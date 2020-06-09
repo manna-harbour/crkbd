@@ -1,0 +1,16 @@
+
+#+Title: Crkbd Keymap by Manna Harbour (Extras)
+
+[[./crkbd-extras.jpg]]
+
+This keymap includes crkbd-specific hardware feature support.
+
+*For details see
+[[https://github.com/manna-harbour/qmk_firmware/blob/crkbd/keyboards/crkbd/keymaps/manna-harbour/readme.org]].*
+
+This repository provides additional content outside QMK.
+
+- [[./mh_images/][OLED Images]]
+- [[./trackpoint/readme.org][Crkbd Hotswap Trackpoint]]
+
+[[https://github.com/manna-harbour][./manna-harbour-boa-32.png]]

@@ -1,0 +1,140 @@
+#+Title: Crkbd Hotswap Trackpoint
+
+[[./trackpoint.jpg]]
+
+The crkbd hotswap trackpoint module is built from a PS/2 trackpoint taken from a
+replacement thinkpad keyboard. The trackpoint is disassembled into the sensor
+module and controller board to reduce the footprint, connected to a driver board
+plugged into the OLED socket, and mounted under a modified OLED cover held in
+place with an additional standoff secured to the pro-micro.
+
+The trackpoint and OLED modules can be swapped by changing the OLED cover,
+standoffs, and socketed module, and reflashing.
+
+*For firmware see
+[[https://github.com/manna-harbour/qmk_firmware/blob/crkbd/keyboards/crkbd/keymaps/manna-harbour/readme.org]].*
+
+* Contents                                                              :TOC_3:
+- [[#build-photos][Build Photos]]
+- [[#build-tips][Build Tips]]
+  - [[#trackpoint-module][Trackpoint Module]]
+  - [[#standoffs][Standoffs]]
+  - [[#mounting-plate][Mounting Plate]]
+  - [[#driver-board][Driver Board]]
+  - [[#installation][Installation]]
+- [[#documentation][Documentation]]
+- [[#builds-list][Builds List]]
+
+* Build Photos
+
+- [[https://photos.app.goo.gl/6eYa4L8kt3tQWYUj7][Crkbd Hotswap Trackpoint Album]]
+
+
+* Build Tips
+
+** Trackpoint Module
+
+- Use trackpoint model R61 so that the controller board can be separated from
+  the sensor module in order to fit entirely below the mounting plate.
+- This trackpoint module can be found in thinkpad keyboard model number MW-89US,
+  but only some parts numbers (including 39T7148 and 42T3241) and not others
+  (including 39T0928), so check the parts number with the seller before
+  purchase.
+- Remove only the 2 outer screws retaining the back cover.  Do not remove the 4
+  screws that have cutouts in the cover.
+- Remove trackpoint cap.
+- Remove the G and H keycaps.
+- Remove the 2 screws under the keycaps securing the module to the keyboard.
+- Remove the module from the keyboard.
+- Bend the flex cable back and forth a few times until it breaks.
+- Remove the 2 screws holding the sensor module to the controller board.
+- Desolder the connection between the sensor module and the controller board,
+  taking care to avoid lifting pads.
+- Rejoin the sensor module and controller board with 4-wire ribbon cable.
+- Solder 5-wire ribbon cable to controller board pads for connection to driver
+  board.
+
+
+** Standoffs
+
+- Add male-female standoffs to OLED cover standoffs so as to match keycap
+  height.
+- Alternatively, replace standoff pairs with single female-female standoffs for
+  greater rigidity.
+- An extra male-female standoff is required at the top end of the mounting plate
+  to prevent movement.
+- After mounting the mounting plate on all 3 standoffs, glue a 1mm nut to the
+  pro-micro to secure the extra standoff while still permitting re-installation
+  of an OLED module.
+
+
+** Mounting Plate
+
+- The trackpoint sensor is a strain guage and needs to be mounted rigidly.
+- Reproduce the standard OLED cover outline in 3mm acrylic or stronger material
+  to avoid flex.
+- Stack the standard OLED cover on the mounting plate and mark through the
+  standoff holes.
+- Place mounting plate on standoffs, position sensor module on top aligned with
+  home row and without overlap, and mark through mounting holes.
+- Mark the sensor cutout hole half way between the sensor module mounting holes.
+- Mark center of extra standoff hole centered horizontally and located 3mm from
+  top edge.
+- Drill mounting holes, standoff holes, and sensor cutout pilot hole with 2mm
+  bit.
+- Drill from the top side to avoid chipping.
+- Redrill sensor cutout hole with 8mm bit.
+
+
+** Driver Board
+
+- Use 5 column strips by 6 rows of stripboard.
+- The stripboard is populated, component side up, as shown in the following
+  table.  The top row is the trackpoint controller board pad function (and
+  connecting wire colour used in the photos). The next 4 rows give connections
+  for each component.  The bottom row is the pin header.
+
+| RST (green) | GND (orange) | VCC (red) | CLK (yellow) | DATA (blue) |
+| 2u2 -       |              | 2u2 +     |              |             |
+| 100k        | 100k         |           |              |             |
+|             |              | 4k7 1/2   |              | 4k7 1/2     |
+|             |              | 4k7 2/2   | 4k7 2/2      |             |
+|             | GND          | VCC       | SCK          | SDA         |
+
+- If using an SMD capacitor, first solder cut resistor legs, place component
+  pad-side-up, bend legs to hold component, cut legs level with top of
+  component, and drag solder between legs and pads.
+- If using a regular capacitor, shift all other components up one row, connect
+  the capacitor to the bottom row below the pin header, and position the
+  capacitor body below the bottom edge.
+- If using a low profile socket, first solder all components except for the pin
+  header, then mount in socket, level the stripboard, and solder the pin header,
+  as there needs to be a gap between the pin header and stripboard to
+  accommodate the height of the components.
+- Solder ribbon cable from controller board.
+
+
+** Installation
+
+- Flash firmware.
+- Cover exposed conductive elements with insulation.
+- Fold into stack.
+- Plug driver board into socket.
+- Screw in standoffs.
+- Screw sensor module to mounting plate.
+- Place new trackpoint cap.
+- Screw mounting plate to standoffs.
+
+
+* Documentation
+
+- https://deskthority.net/wiki/TrackPoint_Hardware
+- https://github.com/alonswartz/trackpoint
+- https://github.com/foostan/crkbd
+
+
+* Builds List
+
+- [[https://github.com/manna-harbour/crkbd/issues/1][Hotswap Trackpoint Builds List]]
+
+[[https://github.com/manna-harbour][../manna-harbour-boa-32.png]]
