@@ -141,6 +141,7 @@ simplified and other models of trackpoint could be used.
 - https://deskthority.net/wiki/TrackPoint_Hardware
 - https://github.com/alonswartz/trackpoint
 - https://github.com/foostan/crkbd
+- https://xkcd.com/243/
 
 
 * Builds List
