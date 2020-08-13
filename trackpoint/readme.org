@@ -22,6 +22,7 @@ standoffs, and socketed module, and reflashing.
   - [[#mounting-plate][Mounting Plate]]
   - [[#driver-board][Driver Board]]
   - [[#installation][Installation]]
+  - [[#other-keyboards][Other Keyboards]]
 - [[#documentation][Documentation]]
 - [[#builds-list][Builds List]]
 
@@ -124,6 +125,15 @@ standoffs, and socketed module, and reflashing.
 - Screw sensor module to mounting plate.
 - Place new trackpoint cap.
 - Screw mounting plate to standoffs.
+
+
+** Other Keyboards
+
+This documentation is for the crkbd but it should also apply to other split
+keyboards with similarly positioned OLEDs such as helix, kyria, and lily58.  For
+keyboards with wider OLED covers the trackpoint may fit without separating the
+controller board from the sensor module, and so the build process will be
+simplified and other models of trackpoint could be used.
 
 
 * Documentation
