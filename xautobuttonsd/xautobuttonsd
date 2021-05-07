@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+
+import argparse
+import io
+import subprocess
+import threading
+
+parser = argparse.ArgumentParser(
+    description='sets LED on device movement, clears on timeout after last movement',
+    epilog='For use with MH_AUTO_BUTTONS.  See http://github.com/manna-harbour/crkbd.')
+parser.add_argument(
+    '-d',
+    '--device',
+    required=False,
+    default='Kensington Expert Wireless TB',
+    help='as per xinput')
+parser.add_argument(
+    '-l',
+    '--led',
+    required=False,
+    default='4',
+    help='number as per xset')
+parser.add_argument(
+    '-t',
+    '--timeout',
+    required=False,
+    default='0.75',
+    help='(s)')
+args = parser.parse_args()
+
+def callback():
+    global timer
+    timer = False
+    subprocess.run(['xset', '-led', args.led])
+
+timer = False
+proc = subprocess.Popen(['xinput', 'test', args.device], stdout=subprocess.PIPE)
+for line in io.TextIOWrapper(proc.stdout, encoding="utf-8"):
+    if timer:
+        timer.cancel()
+    else:
+        subprocess.run(['xset', 'led', args.led])
+    timer = threading.Timer(float(args.timeout), callback)
+    timer.start()
