@@ -12,8 +12,8 @@ parser.add_argument(
     '-d',
     '--device',
     required=False,
-    default='Kensington Expert Wireless TB',
-    help='as per xinput')
+    default='/dev/input/by-id/usb-Kensington_Expert_Wireless_TB-event-mouse',
+    help='/dev/input/event device path')
 parser.add_argument(
     '-l',
     '--led',
@@ -34,8 +34,9 @@ def callback():
     subprocess.run(['xset', '-led', args.led])
 
 timer = False
-proc = subprocess.Popen(['xinput', 'test', args.device], stdout=subprocess.PIPE)
-for line in io.TextIOWrapper(proc.stdout, encoding="utf-8"):
+f = open(args.device, "rb")
+while 1:
+    f.read(3)
     if timer:
         timer.cancel()
     else:
